@@ -6,11 +6,12 @@
 //Публичный метод "приветствие" (greet), который выводит на консоль приветствие вида "Мяу! Меня зовут <имя>. Мне <возраст> года(лет).".
 //Дополнительное задание:
 //Создайте класс "Владелец" (Owner) со свойством "имя" (name) типа String. Добавьте соответствующее поле в классе "Кот" и методы доступа для него. Измените метод "приветствие" класса "Кот", чтобы он выводил приветствие вида "Мяу! Меня зовут <имя>. Мне <возраст> года(лет). Мой владелец - <имя владельца>.".
-
 public class Main {
     public static void main(String[] args) {
         Cat person = new Cat("Мяу!", "Тамара", 27); 
-        System.out.println(person.getGreet() + "Меня зовут " + person.getName() + ". Мне " + person.getAge() + "года (лет).") ; // Получение имени с помощью публичного метода getName()
+        Owner people = new Owner("Людмила");
+        System.out.println(person.getGreet() + "Меня зовут " + person.getName() + ". Мне " + person.getAge() + "года (лет)." + " Мой владелец " + people.getName()); // Получение имени с помощью публичного метода getName()
+   
 
      }
 }
@@ -34,4 +35,14 @@ class Cat {
         return age;
     }
      
+}
+class Owner {
+    private String nam;
+
+  public Owner(String nam) {
+        this.nam = nam;
+  }
+  public String getName() { // Публичный метод getName() для доступа к приватному полю name
+        return nam;
+    }
 }
