@@ -9,3 +9,126 @@
 //Далее нужно запросить минимальные значения для указанных критериев - сохранить параметры фильтрации можно также в Map.
 //Отфильтровать ноутбуки их первоначального множества и вывести проходящие по условиям.
 
+Main.java:
+
+package type;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Main {
+    public static void main(String[] args) {
+        Laptop laptop1 = new Laptop("IRBIS NB283",2021, 4,"LPDDR4", "Windows 10 Pro", "серый", 15999.0);
+        Laptop laptop2 = new Laptop("DEXP Aquilon",2022, 4,"DDR4", "Windows 11 Pro", "серебристый", 16199.0);
+        Laptop laptop3 = new Laptop("Chuwi HeroBook Pro",2021, 8,"LPDDR4", "Windows 10 Home", "серебристый", 20990.0);
+        Laptop laptop4 = new Laptop("Lenovo IdeaPad L340-15API",2019, 4,"DDR4", "без ОС", "черный", 26390.0);
+        Laptop laptop5 = new Laptop("HUAWEI MateBook D 14 NbD-WDI9",2021, 8,"DDR4", "Windows 11 Home Single Language", "серый", 43990.0);
+        Laptop laptop6 = new Laptop("HUAWEI MateBook D 14 NbD-WDI9",2021, 8,"DDR4", "Windows 11 Home Single Language", "серый", 43990.0);
+        Set<Laptop> set = new HashSet<>();
+        set.add(laptop1);
+        set.add(laptop2);
+        set.add(laptop3);
+        set.add(laptop4);
+        set.add(laptop5);
+        System.out.println(laptop5.equals(laptop6));
+        System.out.println(set);
+        Map<Integer,String> maplaptop = new HashMap<>();
+        maplaptop.put(1,"ОЗУ");
+        maplaptop.put(2,"ЖД");
+        maplaptop.put(3,"ОС");
+        maplaptop.put(4,"Цвет");
+        maplaptop.put(5,"Дата релиза");
+        maplaptop.put(6,"Стоимость");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите желаемые характеристики:  ");
+        System.out.println("ЖД: ");
+        int harddiskUser = sc.nextInt();
+        System.out.println("Стоимость: ");
+        double priseUser = sc.nextDouble();
+        for (Laptop lap: set) {
+            if ( (lap.getHardDisk() >= harddiskUser) && lap.getPrice() >= priseUser){
+                System.out.println(lap.toString());
+            }
+        }
+        sc.close();
+       
+    }
+   
+}
+
+
+Laptop.java:
+package type;
+
+import java.util.List;
+
+public class Laptop {
+
+   private String name;
+
+   private int year;
+
+   private int harddisk;
+
+   private String ozu;
+
+   private String os;
+
+   private String color;
+
+   private double price;
+
+
+
+   public Laptop(String name, int year, int harddisk, String string, String os, String color, double price){
+        this.name = name;
+        this.year = year;
+        this.harddisk = harddisk;
+        this.ozu = string;
+        this.os = os;
+        this.color = color;
+        this.price = price;
+   }
+   public String getName(){
+    return name;
+   }
+   public int getYear(){
+    return year;
+   }
+    public int getHardDisk(){
+        return harddisk;
+   }
+    public String getOzu(){
+        return ozu;
+   }
+   public String getOs(){
+        return os;
+   }
+   public String getColor(){
+        return color;
+   }
+    public double getPrice(){
+        return price;
+   }
+   @Override
+   public String toString(){
+    return "name: " + name + " Year: " + year + " Hard disk: " + harddisk + " OZU: " + ozu + " OS: " + os + " Color: " + color;
+   }
+   @Override
+   public boolean equals(Object o){
+        if (this == o) return true;
+        if (!(o instanceof Laptop)) return false;
+        Laptop laptop = (Laptop)o;
+        return name.equals(laptop.name) && year == laptop.year && harddisk == laptop.harddisk && ozu.equals(laptop.ozu) && os.equals(laptop.os) && color.equals(laptop.color) && price == laptop.price;
+   }
+   @Override
+   public int hashCode(){
+        return (int) (6 * name.hashCode() + 12* year + 3 * harddisk + 4 * ozu.hashCode() + 5 * os.hashCode() + 6 * color.hashCode() + 7 * price);
+   }
+}
+
+
