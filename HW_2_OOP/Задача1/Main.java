@@ -33,10 +33,10 @@ public class Main implements IConst {
             else
             System.out.println(ERROR);
         }
-        MyClass mc = new MyClass();
-        mc.met1();
-        mc.met2();
-        mc.met3();
+        //MyClass mc = new MyClass();
+        person.met1();
+        person.met2();
+        person.met3();
 
          class_2 t4 = new class_2();
         t4.getOwner();
@@ -49,7 +49,7 @@ public class Main implements IConst {
 
      }
 }
-class Cat {
+class Cat implements Method2{
     private String name; // Приватное поле name
     private int age; // Приватное поле age
     private String greet;
@@ -67,6 +67,20 @@ class Cat {
     }
     public int getAge() { // Публичный метод getName() для доступа к приватному полю name
         return age;
+    }
+     @Override
+    public void met1() {
+        System.out.println("Кошка  " + name);
+    }
+
+    @Override
+    public void met2() {
+       System.out.println("Возраст " + age);
+    }
+
+    @Override
+    public void met3() {
+         System.out.println("Сказала " + greet);
     }
      
 }
